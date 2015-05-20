@@ -11,6 +11,7 @@
 * 将`SCNumberKeyBoardDemo/Classes`文件夹中的所有文件拽入项目中
 * 导入主头文件：`#import "SCNumberKeyBoard.h"`
 
+## 效果图
 ![](http://i1.tietuku.com/56d87eac2287ab33.gif)
 
 -----------------
