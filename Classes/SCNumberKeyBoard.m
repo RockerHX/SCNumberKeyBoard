@@ -23,7 +23,9 @@
 - (instancetype)initWithTextField:(UITextField *)textField
 {
     // 从Xib加载View
-    self = [[[NSBundle mainBundle] loadNibNamed:@"SCNumberKeyBoard" owner:self options:nil] firstObject];
+    NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"SCNumberKeyBoard" withExtension:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
+    self = [[bundle loadNibNamed:@"SCNumberKeyBoard" owner:self options:nil] firstObject];
     
     _textField = textField;
     _textField.inputView = self;
