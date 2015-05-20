@@ -40,8 +40,8 @@ Pod::Spec.new do |s|
   s.author       = { "ShiCang" => "shicang1990@gmail.com" }
   s.platform     = :ios, "6.0"
   s.source       = { :git => "https://github.com/shicang1990/SCNumberKeyBoard.git", :tag => s.version }
-  s.source_files = "SCNumberKeyBoardDemo/Classes/*.{h,m}"
-  s.resource     = "SCNumberKeyBoardDemo/Resources/SCNumberKeyBoard.bundle"
+  s.source_files = "Classes/*.{h,m}"
+  s.resource     = "Resources/SCNumberKeyBoard.bundle"
   s.requires_arc = true
 
 end
