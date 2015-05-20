@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCNumberKeyBoard"
-  s.version      = "0.1"
+  s.version      = "0.1.1"
   s.summary      = "A Money Number KeyBoard Like AliPay Money Number KeyBoard."
 
   s.description  = <<-DESC
@@ -115,7 +115,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
+  s.resources = "Resources/"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
