@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "SCNumberKeyBoardDemo"
+  s.name         = "SCNumberKeyBoard"
   s.version      = "0.1"
   s.summary      = "A Money Number KeyBoard Like AliPay Money Number KeyBoard."
 
