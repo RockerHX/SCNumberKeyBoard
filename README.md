@@ -1,7 +1,7 @@
-##SCNumberKeyBoard
+## SCNumberKeyBoard
 * A Money Number KeyBoard Like AliPay Money Number KeyBoard.
 
-##金额输入键盘
+## 金额输入键盘
 * 可以同时在代码和Xib以及Storyboard中使用。
 * 只需要简单一句代码即可搞定麻烦的金额输入控制。
 
