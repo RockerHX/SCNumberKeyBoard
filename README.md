@@ -18,5 +18,7 @@
 
 ## Code
 ```{bash}
-    [SCNumberKeyBoard showWithTextField:_textField];
+[SCNumberKeyBoard showWithTextField:textField block:^(NSString *number) {
+    NSLog(@"%@", number);
+}];
 ```
