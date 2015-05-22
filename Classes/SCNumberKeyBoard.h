@@ -12,8 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *enterButton;
 
-+ (instancetype)showWithTextField:(UITextField *)textField;
-- (instancetype)initWithTextField:(UITextField *)textField;
++ (instancetype)showWithTextField:(UITextField *)textField block:(void(^)(NSString *number))block;
+- (instancetype)initWithTextField:(UITextField *)textField block:(void(^)(NSString *number))block;
 
 - (IBAction)numberButtonPressed:(id)sender;
 - (IBAction)coloseButtonPressed;

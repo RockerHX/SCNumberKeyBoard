@@ -8,25 +8,29 @@
 
 #import "SCNumberKeyBoard.h"
 
+typedef void(^BLOCK)(NSString *number);
+
 @implementation SCNumberKeyBoard
 {
+    BLOCK           _block;
     NSMutableArray *_numbers;
     UITextField    *_textField;
 }
 
 #pragma mark - Init Methods
-+ (instancetype)showWithTextField:(UITextField *)textField
++ (instancetype)showWithTextField:(UITextField *)textField block:(void(^)(NSString *number))block
 {
-    return [[SCNumberKeyBoard alloc] initWithTextField:textField];
+    return [[SCNumberKeyBoard alloc] initWithTextField:textField block:block];
 }
 
-- (instancetype)initWithTextField:(UITextField *)textField
+- (instancetype)initWithTextField:(UITextField *)textField block:(void(^)(NSString *number))block
 {
     // 从Xib加载View
     NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"SCNumberKeyBoard" withExtension:@"bundle"];
     NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
     self = [[bundle loadNibNamed:@"SCNumberKeyBoard" owner:self options:nil] firstObject];
     
+    _block = block;
     _textField = textField;
     _textField.inputView = self;
     [self initConfig];
@@ -68,6 +72,9 @@
 {
     [self outputNumbers];
     [self dismiss];
+    
+    if (_block)
+        _block(_textField.text);
 }
 
 #pragma mark - Private Methods
