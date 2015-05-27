@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCNumberKeyBoard"
-  s.version      = "0.1.2"
+  s.version      = "0.1.3"
   s.summary      = "A Money Number KeyBoard Like AliPay Money Number KeyBoard."
 
   s.description  = <<-DESC
@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
 
                         ```{bash}
                             [SCNumberKeyBoard showWithTextField:textField block:^(NSString *number) {
-						        NSLog(@"%@", number);
+						        NSLog(@"number:%@", number);
 						    }];
                         ```
                    DESC
