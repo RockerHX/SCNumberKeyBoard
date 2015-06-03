@@ -14,12 +14,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="n2a-pu-IJT"/>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="4x0-x4-8PD"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2rs-fa-scP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-113" y="464"/>
+            <point key="canvasLocation" x="-205" y="464"/>
         </scene>
         <!--SCNumberKeyBoard-->
         <scene sceneID="ufC-wZ-h7g">
@@ -42,20 +42,44 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Vp-Az-A9t">
+                                <rect key="frame" x="200" y="244" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="PQk-hu-TkF"/>
+                                    <constraint firstAttribute="height" constant="40" id="rGu-sG-F2h"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uRJ-N5-vP2">
+                                <rect key="frame" x="200" y="324" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="7If-EA-G1O"/>
+                                    <constraint firstAttribute="height" constant="40" id="UTx-d1-Zpm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CBg-mw-4yr" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="100" id="25V-KP-WMa"/>
+                            <constraint firstAttribute="centerX" secondItem="uRJ-N5-vP2" secondAttribute="centerX" id="3e7-lt-nBh"/>
+                            <constraint firstItem="2Vp-Az-A9t" firstAttribute="top" secondItem="CBg-mw-4yr" secondAttribute="bottom" constant="40" id="JZe-6s-rcQ"/>
+                            <constraint firstAttribute="centerX" secondItem="2Vp-Az-A9t" secondAttribute="centerX" id="k3k-Sj-K9b"/>
+                            <constraint firstItem="uRJ-N5-vP2" firstAttribute="top" secondItem="2Vp-Az-A9t" secondAttribute="bottom" constant="40" id="kk0-ae-IGm"/>
                             <constraint firstAttribute="centerX" secondItem="CBg-mw-4yr" secondAttribute="centerX" id="oCo-Az-OAD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="SCNumberKeyBoard" id="YVL-VQ-9xV"/>
                     <connections>
-                        <outlet property="textField" destination="CBg-mw-4yr" id="Tqr-bD-S02"/>
+                        <outlet property="firstField" destination="CBg-mw-4yr" id="BGY-ht-OQE"/>
+                        <outlet property="secondField" destination="2Vp-Az-A9t" id="mAC-Cu-HZh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="523" y="464"/>
         </scene>
     </scenes>
 </document>

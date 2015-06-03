@@ -12,7 +12,7 @@
 #define KEY_BOARD_HEIGHT    180.0f
 #define SCREEN_WITH         [UIScreen mainScreen].bounds.size.width
 
-typedef void(^BLOCK)(NSString *number);
+typedef void(^BLOCK)(UITextField *textField, NSString *number);
 
 @implementation SCNumberKeyBoard
 {
@@ -22,12 +22,24 @@ typedef void(^BLOCK)(NSString *number);
 }
 
 #pragma mark - Init Methods
-+ (instancetype)showWithTextField:(UITextField *)textField block:(void(^)(NSString *number))block
++ (void)showOnViewController:(UIViewController *)viewController block:(void(^)(UITextField *textField, NSString *number))block
+{
+    for (UIView *view in viewController.view.subviews)
+    {
+        if ([view isKindOfClass:[UITextField class]])
+        {
+            UITextField *textField = (UITextField *)view;
+            [SCNumberKeyBoard showWithTextField:textField block:block];
+        }
+    }
+}
+
++ (instancetype)showWithTextField:(UITextField *)textField block:(void(^)(UITextField *textField, NSString *number))block
 {
     return [[SCNumberKeyBoard alloc] initWithTextField:textField block:block];
 }
 
-- (instancetype)initWithTextField:(UITextField *)textField block:(void(^)(NSString *number))block
+- (instancetype)initWithTextField:(UITextField *)textField block:(void(^)(UITextField *textField, NSString *number))block
 {
     // 从Xib加载View
     NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"SCNumberKeyBoard" withExtension:@"bundle"];
@@ -75,11 +87,9 @@ typedef void(^BLOCK)(NSString *number);
 
 - (IBAction)enterButtonPressed
 {
-    [self outputNumbers];
-    [self dismiss];
-    
     if (_block)
-        _block(_textField.text);
+        _block(_textField, [self outputNumbers]);
+    [self dismiss];
 }
 
 #pragma mark - Private Methods
@@ -134,11 +144,12 @@ typedef void(^BLOCK)(NSString *number);
     [self outputNumbers];
 }
 
-- (void)outputNumbers
+- (NSString *)outputNumbers
 {
+    _enterButton.enabled = _numbers.count;
     NSString *numbers = [_numbers componentsJoinedByString:@""];
     _textField.text = numbers;
-    _enterButton.enabled = _numbers.count;
+    return numbers;
 }
 
 #pragma mark - Public Methods

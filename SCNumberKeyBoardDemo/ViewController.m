@@ -19,9 +19,15 @@
 {
     [super viewDidLoad];
     
-    [SCNumberKeyBoard showWithTextField:_textField block:^(NSString *number) {
-        NSLog(@"number:%@", number);
+    [SCNumberKeyBoard showOnViewController:self block:^(UITextField *textField, NSString *number) {
+        NSLog(@"textField:%@ - number:%@", textField, number);
     }];
+//    [SCNumberKeyBoard showWithTextField:_firstField block:^(UITextField *textField, NSString *number) {
+//        NSLog(@"textField:%@ - number:%@", textField, number);
+//    }];
+//    [SCNumberKeyBoard showWithTextField:_secondField block:^(UITextField *textField, NSString *number) {
+//        NSLog(@"textField:%@ - number:%@", textField, number);
+//    }];
 }
 
 @end
