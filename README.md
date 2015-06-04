@@ -4,8 +4,10 @@
 
 ## Installation
 Use the [CocoaPods](http://github.com/CocoaPods/CocoaPods).
+
 In your Podfile
 >`pod 'SCNumberKeyBoard'`
+
 Get busy Masoning
 >`#import "Masonry.h"`
 
@@ -48,13 +50,13 @@ Drag `SCNumberKeyBoardDemo/Classes` folder into your project
 ## 加入代码
 ```{bash}
 [SCNumberKeyBoard showOnViewController:<#viewController#> block:^(UITextField *textField, NSString *number) {
-NSLog(@"%@", number);
+    NSLog(@"%@", number);
 }];
 ```
 ### Or
 ```{bash}
 [SCNumberKeyBoard showWithTextField:<#textField#> block:^(UITextField *textField, NSString *number) {
-NSLog(@"%@", number);
+    NSLog(@"%@", number);
 }];
 ```
 
