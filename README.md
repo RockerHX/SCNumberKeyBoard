@@ -31,6 +31,8 @@ Drag `SCNumberKeyBoardDemo/Classes` folder into your project
 }];
 ```
 
+-----------------
+
 ## 金额输入键盘
 * 可以同时在代码和Xib以及Storyboard中使用。
 * 只需要简单一句代码即可搞定麻烦的金额输入控制。
@@ -44,8 +46,6 @@ Drag `SCNumberKeyBoardDemo/Classes` folder into your project
 
 ## 效果图
 ![](http://i1.tietuku.com/56d87eac2287ab33.gif)
-
------------------
 
 ## 加入代码
 ```{bash}
