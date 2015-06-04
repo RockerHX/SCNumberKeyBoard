@@ -1,9 +1,8 @@
 //
 //  SCNumberKeyBoard.m
-//  MaintenanceCar
 //
 //  Created by ShiCang on 15/5/19.
-//  Copyright (c) 2015年 MaintenanceCar. All rights reserved.
+//  Copyright (c) 2015年 ShiCang. All rights reserved.
 //
 
 #import "SCNumberKeyBoard.h"
@@ -41,7 +40,7 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 
 - (instancetype)initWithTextField:(UITextField *)textField block:(void(^)(UITextField *textField, NSString *number))block
 {
-    // 从Xib加载View
+    // Init keyboard view by xib
     NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"SCNumberKeyBoard" withExtension:@"bundle"];
     NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
     self = [[bundle loadNibNamed:@"SCNumberKeyBoard" owner:self options:nil] firstObject];
@@ -64,14 +63,9 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 #pragma mark - Action Methods
 - (IBAction)numberButtonPressed:(id)sender
 {
+    // Get input number with keyboard and handle.
     NSString *number = ((UIButton *)sender).currentTitle;
-    if ([_numbers containsObject:@"."])
-    {
-        if (![number isEqualToString:@"."] && (_numbers.count - [_numbers indexOfObject:@"."]) <= 2)
-            [self pushNumber:number];
-    }
-    else
-        [self pushNumber:number];
+    [self handleNumber:number];
 }
 
 - (IBAction)coloseButtonPressed
@@ -81,12 +75,14 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 
 - (IBAction)backSpaceIconButtonPressed
 {
+    // Delete number
     [_numbers removeLastObject];
     [self outputNumbers];
 }
 
 - (IBAction)enterButtonPressed
 {
+    // User determine and close, callback to notifaction coder.
     if (_block)
         _block(_textField, [self outputNumbers]);
     [self dismiss];
@@ -96,6 +92,7 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 #define SYSTEM_VERSION      [UIDevice currentDevice].systemVersion.floatValue
 - (UIView *)keyBoardView
 {
+    // Layout keyboard for IOS7.
     if ((SYSTEM_VERSION >= 7) && (SYSTEM_VERSION < 8))
     {
         self.translatesAutoresizingMaskIntoConstraints = NO;
@@ -138,14 +135,28 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
         return self;
 }
 
+- (void)handleNumber:(NSString *)number
+{
+    // Handle decimal point and decimal
+    if ([_numbers containsObject:@"."])
+    {
+        if (![number isEqualToString:@"."] && (_numbers.count - [_numbers indexOfObject:@"."]) <= 2)
+            [self pushNumber:number];
+    }
+    else
+        [self pushNumber:number];
+}
+
 - (void)pushNumber:(NSString *)number
 {
+    // Push a number to container.
     [_numbers addObject:number];
     [self outputNumbers];
 }
 
 - (NSString *)outputNumbers
 {
+    // Splice string by numbers on container.
     _enterButton.enabled = _numbers.count;
     NSString *numbers = [_numbers componentsJoinedByString:@""];
     _textField.text = numbers;
