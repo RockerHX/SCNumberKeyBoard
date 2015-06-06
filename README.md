@@ -60,4 +60,3 @@ Drag `SCNumberKeyBoardDemo/Classes` folder into your project
 }];
 ```
 
-

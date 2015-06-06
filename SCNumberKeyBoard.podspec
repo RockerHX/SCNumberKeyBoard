@@ -31,24 +31,24 @@ Pod::Spec.new do |s|
 							In your Podfile
 							>`pod 'SCNumberKeyBoard'`
 
-							Get busy Masoning
-							>`#import "Masonry.h"`
+							Get SCNumberKeyBoard
+							>`#import "SCNumberKeyBoard.h"`
 
 							## Or
 							Drag `SCNumberKeyBoardDemo/Classes` folder into your project
-							>`#import "Masonry.h"`
+							>`#import "SCNumberKeyBoard.h"`
 
 							## Previews
 							![](http://i1.tietuku.com/56d87eac2287ab33.gif)
 
 							## How To Use
-							```{bash}
+							```objc
 							[SCNumberKeyBoard showOnViewController:<#viewController#> block:^(UITextField *textField, NSString *number) {
 							    NSLog(@"%@", number);
 							}];
 							```
 							### Or
-							```{bash}
+							```objc
 							[SCNumberKeyBoard showWithTextField:<#textField#> block:^(UITextField *textField, NSString *number) {
 							    NSLog(@"%@", number);
 							}];
@@ -71,13 +71,13 @@ Pod::Spec.new do |s|
 							![](http://i1.tietuku.com/56d87eac2287ab33.gif)
 
 							## 加入代码
-							```{bash}
+							```objc
 							[SCNumberKeyBoard showOnViewController:<#viewController#> block:^(UITextField *textField, NSString *number) {
 							    NSLog(@"%@", number);
 							}];
 							```
 							### Or
-							```{bash}
+							```objc
 							[SCNumberKeyBoard showWithTextField:<#textField#> block:^(UITextField *textField, NSString *number) {
 							    NSLog(@"%@", number);
 							}];
