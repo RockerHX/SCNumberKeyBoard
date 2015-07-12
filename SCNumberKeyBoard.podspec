@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCNumberKeyBoard"
-  s.version      = "0.2.1"
+  s.version      = "0.3.0"
   s.summary      = "A Money Number KeyBoard Like AliPay Money Number KeyBoard."
 
   s.description  = <<-DESC
@@ -53,6 +53,9 @@ Pod::Spec.new do |s|
 							    NSLog(@"%@", number);
 							}];
 							```
+							## Localization
+							Localization include Chinese and English, you can add other by yourself. Change localization you should edit Info.plist, 
+							the item of [Localization native development region], this project default is base, you can change to en for display English.
 
 							-----------------
 
@@ -82,6 +85,9 @@ Pod::Spec.new do |s|
 							    NSLog(@"%@", number);
 							}];
 							```
+							## 本地化
+							本地化只包含了中文和英文，其他语言自行添加
+							改变语言环境请在工程目录下找到并编辑Info.plist文件的[Localization native development region]项，本工程默认为base显示中文，或者改为en显示英文
 
                    DESC
 
