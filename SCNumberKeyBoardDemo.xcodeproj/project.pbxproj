@@ -33,7 +33,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		48520C031B52762200AA66E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SCNumberKeyBoard.xib; sourceTree = "<group>"; };
 		48520C051B52764200AA66E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SCNumberKeyBoard.xib; sourceTree = "<group>"; };
 		486702E71B0C3899005BA172 /* SCNumberKeyBoardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCNumberKeyBoardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		486702EB1B0C3899005BA172 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +55,8 @@
 		48F1E8501B0CC95C00FFCE75 /* KeyBoardIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KeyBoardIcon@2x.png"; sourceTree = "<group>"; };
 		48F1E8511B0CC95C00FFCE75 /* KeyButtonBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KeyButtonBG@2x.png"; sourceTree = "<group>"; };
 		48F1E85A1B0CCCFE00FFCE75 /* SCNumberKeyBoard.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SCNumberKeyBoard.bundle; sourceTree = "<group>"; };
+		A14464FA1B7DF52400974A4C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SCNumberKeyBoard.strings"; sourceTree = "<group>"; };
+		A14464FB1B7DF53E00974A4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SCNumberKeyBoard.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,8 +369,9 @@
 		48520C041B52762200AA66E1 /* SCNumberKeyBoard.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				48520C031B52762200AA66E1 /* en */,
 				48520C051B52764200AA66E1 /* Base */,
+				A14464FA1B7DF52400974A4C /* zh-Hans */,
+				A14464FB1B7DF53E00974A4C /* en */,
 			);
 			name = SCNumberKeyBoard.xib;
 			sourceTree = "<group>";
