@@ -33,7 +33,7 @@ Drag `SCNumberKeyBoardDemo/Classes` folder into your project
 ## Localization
 Localization include Chinese and English, you can add other by yourself. Change localization you should edit Info.plist.
 
-the item of [Localization native development region], this project default is base for English, you can change to zn_h for display Chinese, and you can change to en for display English, also you can selected UK or US for display English, or you can selected China for display Chinese.
+Use localization that you should change IOS system language.
 
 -----------------
 
@@ -64,7 +64,7 @@ the item of [Localization native development region], this project default is ba
 }];
 ```
 ## 本地化
-本地化只包含了中文和英文，其他语言自行添加
+本地化只包含了中文和英文，其他语言自行添加。
 
-改变语言环境请在工程目录下找到并编辑Info.plist文件的[Localization native development region]项，本工程默认为base显示英文，你也可以改变其值为zn_h显示中文，或者选择UK或US显示英文，亦可以选择China显示中文
+使用本地化，改变IOS系统语言即可。
 
