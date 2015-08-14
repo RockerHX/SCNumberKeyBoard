@@ -7,39 +7,42 @@
 
 #import "SCNumberKeyBoard.h"
 
-#define ZERO_POINT          0.0f
-#define KEY_BOARD_HEIGHT    180.0f
-#define SCREEN_WITH         [UIScreen mainScreen].bounds.size.width
+static const CGFloat ZERO_POINT = 0.0f;
+static const CGFloat KEY_BOARD_HEIGHT = 180.0f;
 
 typedef void(^BLOCK)(UITextField *textField, NSString *number);
 
-@implementation SCNumberKeyBoard
-{
+@interface SCNumberKeyBoard () {
     BLOCK           _block;
     NSMutableArray *_numbers;
     UITextField    *_textField;
 }
 
+// Action Methods
+- (IBAction)numberButtonPressed:(id)sender;
+- (IBAction)coloseButtonPressed;
+- (IBAction)backSpaceIconButtonPressed;
+- (IBAction)enterButtonPressed;
+
+@end
+
+@implementation SCNumberKeyBoard
+
 #pragma mark - Init Methods
-+ (void)showOnViewController:(UIViewController *)viewController block:(void(^)(UITextField *textField, NSString *number))block
-{
-    for (UIView *view in viewController.view.subviews)
-    {
-        if ([view isKindOfClass:[UITextField class]])
-        {
++ (void)showOnViewController:(UIViewController *)viewController block:(void(^)(UITextField *textField, NSString *number))block {
+    for (UIView *view in viewController.view.subviews) {
+        if ([view isKindOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField *)view;
             [SCNumberKeyBoard showWithTextField:textField block:block];
         }
     }
 }
 
-+ (instancetype)showWithTextField:(UITextField *)textField block:(void(^)(UITextField *textField, NSString *number))block
-{
++ (instancetype)showWithTextField:(UITextField *)textField block:(void(^)(UITextField *textField, NSString *number))block {
     return [[SCNumberKeyBoard alloc] initWithTextField:textField block:block];
 }
 
-- (instancetype)initWithTextField:(UITextField *)textField block:(void(^)(UITextField *textField, NSString *number))block
-{
+- (instancetype)initWithTextField:(UITextField *)textField block:(void(^)(UITextField *textField, NSString *number))block {
     // Init keyboard view by xib
     NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"SCNumberKeyBoard" withExtension:@"bundle"];
     NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
@@ -55,33 +58,28 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 }
 
 #pragma mark - Config Methods
-- (void)initConfig
-{
+- (void)initConfig {
     _numbers = @[].mutableCopy;
 }
 
 #pragma mark - Action Methods
-- (IBAction)numberButtonPressed:(id)sender
-{
+- (IBAction)numberButtonPressed:(id)sender {
     // Get input number with keyboard and handle.
     NSString *number = ((UIButton *)sender).currentTitle;
     [self handleNumber:number];
 }
 
-- (IBAction)coloseButtonPressed
-{
+- (IBAction)coloseButtonPressed {
     [self dismiss];
 }
 
-- (IBAction)backSpaceIconButtonPressed
-{
+- (IBAction)backSpaceIconButtonPressed {
     // Delete number
     [_numbers removeLastObject];
     [self outputNumbers];
 }
 
-- (IBAction)enterButtonPressed
-{
+- (IBAction)enterButtonPressed {
     // User determine and close, callback to notifaction coder.
     if (_block)
         _block(_textField, [self outputNumbers]);
@@ -89,14 +87,13 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 }
 
 #pragma mark - Private Methods
-#define SYSTEM_VERSION      [UIDevice currentDevice].systemVersion.floatValue
-- (UIView *)keyBoardView
-{
+- (UIView *)keyBoardView {
     // Layout keyboard for IOS7.
-    if ((SYSTEM_VERSION >= 7) && (SYSTEM_VERSION < 8))
-    {
+    CGFloat systemVersion = [UIDevice currentDevice].systemVersion.floatValue;
+    if ((systemVersion >= 7) && (systemVersion < 8)) {
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        UIView *superview = [[UIView alloc] initWithFrame:CGRectMake(ZERO_POINT, ZERO_POINT, SCREEN_WITH, KEY_BOARD_HEIGHT)];
+        UIView *superview = [[UIView alloc] initWithFrame:CGRectMake(ZERO_POINT, ZERO_POINT, screenWidth, KEY_BOARD_HEIGHT)];
         superview.backgroundColor = [UIColor grayColor];
         [superview addSubview:self];
         UIEdgeInsets padding = UIEdgeInsetsMake(ZERO_POINT, ZERO_POINT, ZERO_POINT, ZERO_POINT);
@@ -130,32 +127,29 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
                                                                   constant:-padding.right],
                                     ]];
         return superview;
-    }
-    else
+    } else {
         return self;
-}
-
-- (void)handleNumber:(NSString *)number
-{
-    // Handle decimal point and decimal
-    if ([_numbers containsObject:@"."])
-    {
-        if (![number isEqualToString:@"."] && (_numbers.count - [_numbers indexOfObject:@"."]) <= 2)
-            [self pushNumber:number];
     }
-    else
-        [self pushNumber:number];
 }
 
-- (void)pushNumber:(NSString *)number
-{
+- (void)handleNumber:(NSString *)number {
+    // Handle decimal point and decimal
+    if ([_numbers containsObject:@"."]) {
+        if (![number isEqualToString:@"."] && (_numbers.count - [_numbers indexOfObject:@"."]) <= 2) {
+            [self pushNumber:number];
+        }
+    } else {
+        [self pushNumber:number];
+    }
+}
+
+- (void)pushNumber:(NSString *)number {
     // Push a number to container.
     [_numbers addObject:number];
     [self outputNumbers];
 }
 
-- (NSString *)outputNumbers
-{
+- (NSString *)outputNumbers {
     // Splice string by numbers on container.
     _enterButton.enabled = _numbers.count;
     NSString *numbers = [_numbers componentsJoinedByString:@""];
@@ -164,8 +158,7 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 }
 
 #pragma mark - Public Methods
-- (void)dismiss
-{
+- (void)dismiss {
     [_textField resignFirstResponder];
 }
 

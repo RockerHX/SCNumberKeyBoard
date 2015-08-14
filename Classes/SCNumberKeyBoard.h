@@ -32,12 +32,6 @@
 - (instancetype)initWithTextField:(UITextField *)textField
                             block:(void(^)(UITextField *textField, NSString *number))block;
 
-// Action Methods
-- (IBAction)numberButtonPressed:(id)sender;
-- (IBAction)coloseButtonPressed;
-- (IBAction)backSpaceIconButtonPressed;
-- (IBAction)enterButtonPressed;
-
 /**
  *  Close Keyboard
  */
