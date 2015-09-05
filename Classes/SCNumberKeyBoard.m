@@ -31,13 +31,15 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 
 #pragma mark - Init Methods
 + (void)showOnViewController:(UIViewController *)viewController
+            enterButtonTitle:(NSString *)title
                        enter:(void(^)(UITextField *, NSString *))enter
                        close:(void (^)(UITextField *, NSString *))close
 {
     for (UIView *view in viewController.view.subviews) {
         if ([view isKindOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField *)view;
-            [SCNumberKeyBoard showWithTextField:textField enter:enter close:close];
+            SCNumberKeyBoard *keyboard = [SCNumberKeyBoard showWithTextField:textField enter:enter close:close];
+            [keyboard.enterButton setTitle:(title ?: [keyboard.enterButton titleForState:UIControlStateNormal]) forState:UIControlStateNormal];
         }
     }
 }

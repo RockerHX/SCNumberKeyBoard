@@ -16,6 +16,7 @@
  *  类方法：为某一个视图控制器的所有text field控件添加数字键盘。
  */
 + (void)showOnViewController:(UIViewController *)viewController
+            enterButtonTitle:(NSString *)title
                        enter:(void(^)(UITextField *textField, NSString *number))enter
                        close:(void(^)(UITextField *textField, NSString *number))close;
 
