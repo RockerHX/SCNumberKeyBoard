@@ -20,7 +20,7 @@ Drag `SCNumberKeyBoardDemo/Classes` folder into your project
 
 ## How To Use
 ```objc
-[SCNumberKeyBoard showOnViewController:<#viewController#> enter:^(UITextField *textField, NSString *number) {
+[SCNumberKeyBoard showOnViewController:<#viewController#> enterButtonTitle:nil enter:^(UITextField *textField, NSString *number) {
         NSLog(@"textField:%@ - number:%@", textField, number);
     } close:^(UITextField *textField, NSString *number) {
         NSLog(@"textField:%@ - number:%@", textField, number);
@@ -57,7 +57,7 @@ Use localization that you should change IOS system language.
 
 ## 加入代码
 ```objc
-[SCNumberKeyBoard showOnViewController:<#viewController#> enter:^(UITextField *textField, NSString *number) {
+[SCNumberKeyBoard showOnViewController:<#viewController#> enterButtonTitle:nil enter:^(UITextField *textField, NSString *number) {
         NSLog(@"textField:%@ - number:%@", textField, number);
     } close:^(UITextField *textField, NSString *number) {
         NSLog(@"textField:%@ - number:%@", textField, number);
