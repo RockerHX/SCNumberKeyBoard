@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCNumberKeyBoard"
-  s.version      = "0.4.0"
+  s.version      = "0.4.1"
   s.summary      = "A Money Number KeyBoard Like AliPay Money Number KeyBoard."
 
   s.description  = <<-DESC
@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
 
 						## How To Use
 						```objc
-						[SCNumberKeyBoard showOnViewController:<#viewController#> enter:^(UITextField *textField, NSString *number) {
+						[SCNumberKeyBoard showOnViewController:<#viewController#> enterButtonTitle:nil enter:^(UITextField *textField, NSString *number) {
 						        NSLog(@"textField:%@ - number:%@", textField, number);
 						    } close:^(UITextField *textField, NSString *number) {
 						        NSLog(@"textField:%@ - number:%@", textField, number);
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
 
 						## 加入代码
 						```objc
-						[SCNumberKeyBoard showOnViewController:<#viewController#> enter:^(UITextField *textField, NSString *number) {
+						[SCNumberKeyBoard showOnViewController:<#viewController#> enterButtonTitle:nil enter:^(UITextField *textField, NSString *number) {
 						        NSLog(@"textField:%@ - number:%@", textField, number);
 						    } close:^(UITextField *textField, NSString *number) {
 						        NSLog(@"textField:%@ - number:%@", textField, number);
