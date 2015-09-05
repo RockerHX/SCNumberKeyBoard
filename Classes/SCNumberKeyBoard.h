@@ -16,21 +16,21 @@
  *  类方法：为某一个视图控制器的所有text field控件添加数字键盘。
  */
 + (void)showOnViewController:(UIViewController *)viewController
-                       block:(void(^)(UITextField *textField, NSString *number))block;
+                       enter:(void(^)(UITextField *textField, NSString *number))block;
 
 /**
  *  Class Method : show number keyboard for a text field.
  *  类方法：为某一个text field控件添加数字键盘。
  */
 + (instancetype)showWithTextField:(UITextField *)textField
-                            block:(void(^)(UITextField *textField, NSString *number))block;
+                            enter:(void(^)(UITextField *textField, NSString *number))block;
 
 /**
  *  Intance Method : show number keyboard for a text field.
  *  实例方法：为某一个text field控件添加数字键盘。
  */
 - (instancetype)initWithTextField:(UITextField *)textField
-                            block:(void(^)(UITextField *textField, NSString *number))block;
+                            enter:(void(^)(UITextField *textField, NSString *number))block;
 
 /**
  *  Close Keyboard

@@ -29,20 +29,20 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 @implementation SCNumberKeyBoard
 
 #pragma mark - Init Methods
-+ (void)showOnViewController:(UIViewController *)viewController block:(void(^)(UITextField *textField, NSString *number))block {
++ (void)showOnViewController:(UIViewController *)viewController enter:(void(^)(UITextField *textField, NSString *number))block {
     for (UIView *view in viewController.view.subviews) {
         if ([view isKindOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField *)view;
-            [SCNumberKeyBoard showWithTextField:textField block:block];
+            [SCNumberKeyBoard showWithTextField:textField enter:block];
         }
     }
 }
 
-+ (instancetype)showWithTextField:(UITextField *)textField block:(void(^)(UITextField *textField, NSString *number))block {
-    return [[SCNumberKeyBoard alloc] initWithTextField:textField block:block];
++ (instancetype)showWithTextField:(UITextField *)textField enter:(void(^)(UITextField *textField, NSString *number))block {
+    return [[SCNumberKeyBoard alloc] initWithTextField:textField enter:block];
 }
 
-- (instancetype)initWithTextField:(UITextField *)textField block:(void(^)(UITextField *textField, NSString *number))block {
+- (instancetype)initWithTextField:(UITextField *)textField enter:(void(^)(UITextField *textField, NSString *number))block {
     // Init keyboard view by xib
     NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"SCNumberKeyBoard" withExtension:@"bundle"];
     NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
@@ -81,8 +81,9 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 
 - (IBAction)enterButtonPressed {
     // User determine and close, callback to notifaction coder.
-    if (_block)
+    if (_block) {
         _block(_textField, [self outputNumbers]);
+    }
     [self dismiss];
 }
 
