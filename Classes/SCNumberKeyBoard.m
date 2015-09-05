@@ -13,13 +13,14 @@ static const CGFloat KEY_BOARD_HEIGHT = 180.0f;
 typedef void(^BLOCK)(UITextField *textField, NSString *number);
 
 @interface SCNumberKeyBoard () {
-    BLOCK           _block;
+    BLOCK           _enterBlock;
+    BLOCK           _closeBlock;
     NSMutableArray *_numbers;
     UITextField    *_textField;
 }
 
 // Action Methods
-- (IBAction)numberButtonPressed:(id)sender;
+- (IBAction)numberButtonPressed:(UIButton *)button;
 - (IBAction)coloseButtonPressed;
 - (IBAction)backSpaceIconButtonPressed;
 - (IBAction)enterButtonPressed;
@@ -29,26 +30,36 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 @implementation SCNumberKeyBoard
 
 #pragma mark - Init Methods
-+ (void)showOnViewController:(UIViewController *)viewController enter:(void(^)(UITextField *textField, NSString *number))block {
++ (void)showOnViewController:(UIViewController *)viewController
+                       enter:(void(^)(UITextField *, NSString *))enter
+                       close:(void (^)(UITextField *, NSString *))close
+{
     for (UIView *view in viewController.view.subviews) {
         if ([view isKindOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField *)view;
-            [SCNumberKeyBoard showWithTextField:textField enter:block];
+            [SCNumberKeyBoard showWithTextField:textField enter:enter close:close];
         }
     }
 }
 
-+ (instancetype)showWithTextField:(UITextField *)textField enter:(void(^)(UITextField *textField, NSString *number))block {
-    return [[SCNumberKeyBoard alloc] initWithTextField:textField enter:block];
++ (instancetype)showWithTextField:(UITextField *)textField
+                            enter:(void(^)(UITextField *, NSString *))enter
+                            close:(void (^)(UITextField *, NSString *))close
+{
+    return [[SCNumberKeyBoard alloc] initWithTextField:textField enter:enter close:close];
 }
 
-- (instancetype)initWithTextField:(UITextField *)textField enter:(void(^)(UITextField *textField, NSString *number))block {
+- (instancetype)initWithTextField:(UITextField *)textField
+                            enter:(void(^)(UITextField *, NSString *))enter
+                            close:(void (^)(UITextField *, NSString *))close
+{
     // Init keyboard view by xib
     NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"SCNumberKeyBoard" withExtension:@"bundle"];
     NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
     self = [[bundle loadNibNamed:@"SCNumberKeyBoard" owner:self options:nil] firstObject];
     
-    _block = block;
+    _enterBlock = enter;
+    _closeBlock = close;
     _textField = textField;
     _textField.inputView = [self keyBoardView];
     _textField.inputAccessoryView = nil;
@@ -63,13 +74,17 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 }
 
 #pragma mark - Action Methods
-- (IBAction)numberButtonPressed:(id)sender {
+- (IBAction)numberButtonPressed:(UIButton *)button {
     // Get input number with keyboard and handle.
-    NSString *number = ((UIButton *)sender).currentTitle;
+    NSString *number = button.currentTitle;
     [self handleNumber:number];
 }
 
 - (IBAction)coloseButtonPressed {
+    // User determine and close, callback to notifaction coder.
+    if (_closeBlock) {
+        _closeBlock(_textField, [self outputNumbers]);
+    }
     [self dismiss];
 }
 
@@ -81,8 +96,8 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 
 - (IBAction)enterButtonPressed {
     // User determine and close, callback to notifaction coder.
-    if (_block) {
-        _block(_textField, [self outputNumbers]);
+    if (_enterBlock) {
+        _enterBlock(_textField, [self outputNumbers]);
     }
     [self dismiss];
 }
