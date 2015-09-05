@@ -26,7 +26,7 @@ Drag `SCNumberKeyBoardDemo/Classes` folder into your project
         NSLog(@"textField:%@ - number:%@", textField, number);
 }];
 ```
-### Or
+## Or
 ```objc
 [SCNumberKeyBoard showWithTextField:<#textField#> enter:^(UITextField *textField, NSString *number) {
         NSLog(@"textField:%@ - number:%@", textField, number);
@@ -63,7 +63,7 @@ Use localization that you should change IOS system language.
         NSLog(@"textField:%@ - number:%@", textField, number);
 }];
 ```
-### Or
+## 或者
 ```objc
 [SCNumberKeyBoard showWithTextField:<#textField#> enter:^(UITextField *textField, NSString *number) {
         NSLog(@"textField:%@ - number:%@", textField, number);
