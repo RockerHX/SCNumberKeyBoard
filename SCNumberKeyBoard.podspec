@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCNumberKeyBoard"
-  s.version      = "0.3.2"
+  s.version      = "0.4.0"
   s.summary      = "A Money Number KeyBoard Like AliPay Money Number KeyBoard."
 
   s.description  = <<-DESC
@@ -44,16 +44,19 @@ Pod::Spec.new do |s|
 
 						## How To Use
 						```objc
-						[SCNumberKeyBoard showOnViewController:<#viewController#> block:^(UITextField *textField, NSString *number) {
-						    NSLog(@"%@", number);
+						[SCNumberKeyBoard showOnViewController:<#viewController#> enter:^(UITextField *textField, NSString *number) {
+						        NSLog(@"textField:%@ - number:%@", textField, number);
+						    } close:^(UITextField *textField, NSString *number) {
+						        NSLog(@"textField:%@ - number:%@", textField, number);
 						}];
 						```
-						### Or
+						## Or
 						```objc
-						[SCNumberKeyBoard showWithTextField:<#textField#> block:^(UITextField *textField, NSString *number) {
-						    NSLog(@"%@", number);
+						[SCNumberKeyBoard showWithTextField:<#textField#> enter:^(UITextField *textField, NSString *number) {
+						        NSLog(@"textField:%@ - number:%@", textField, number);
+						    } close:^(UITextField *textField, NSString *number) {
+						        NSLog(@"textField:%@ - number:%@", textField, number);
 						}];
-						```
 						## Localization
 						Localization include Chinese and English, you can add other by yourself. Change localization you should edit Info.plist.
 
@@ -77,14 +80,18 @@ Pod::Spec.new do |s|
 
 						## 加入代码
 						```objc
-						[SCNumberKeyBoard showOnViewController:<#viewController#> block:^(UITextField *textField, NSString *number) {
-						    NSLog(@"%@", number);
+						[SCNumberKeyBoard showOnViewController:<#viewController#> enter:^(UITextField *textField, NSString *number) {
+						        NSLog(@"textField:%@ - number:%@", textField, number);
+						    } close:^(UITextField *textField, NSString *number) {
+						        NSLog(@"textField:%@ - number:%@", textField, number);
 						}];
 						```
-						### Or
+						## 或者
 						```objc
-						[SCNumberKeyBoard showWithTextField:<#textField#> block:^(UITextField *textField, NSString *number) {
-						    NSLog(@"%@", number);
+						[SCNumberKeyBoard showWithTextField:<#textField#> enter:^(UITextField *textField, NSString *number) {
+						        NSLog(@"textField:%@ - number:%@", textField, number);
+						    } close:^(UITextField *textField, NSString *number) {
+						        NSLog(@"textField:%@ - number:%@", textField, number);
 						}];
 						```
 						## 本地化
