@@ -9,14 +9,9 @@
 #import "ViewController.h"
 #import "SCNumberKeyBoard.h"
 
-@interface ViewController ()
-
-@end
-
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     [SCNumberKeyBoard showOnViewController:self enter:^(UITextField *textField, NSString *number) {
@@ -37,5 +32,6 @@
 //        NSLog(@"textField:%@ - number:%@", textField, number);
 //    }];
 }
+
 
 @end
