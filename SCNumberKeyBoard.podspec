@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCNumberKeyBoard"
-  s.version      = "0.4.1"
+  s.version      = "0.5.0"
   s.summary      = "A Money Number KeyBoard Like AliPay Money Number KeyBoard."
 
   s.description  = <<-DESC
@@ -60,7 +60,7 @@ Pod::Spec.new do |s|
 						## Localization
 						Localization include Chinese and English, you can add other by yourself. Change localization you should edit Info.plist.
 
-						Use localization that you should change IOS system language.
+						Use localization that you should change iOS system language.
 
 						-----------------
 
@@ -97,7 +97,7 @@ Pod::Spec.new do |s|
 						## 本地化
 						本地化只包含了中文和英文，其他语言自行添加。
 
-						使用本地化，改变IOS系统语言即可。
+						使用本地化，改变iOS系统语言即可。
 
 
                    DESC

@@ -56,9 +56,7 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
                             close:(void (^)(UITextField *, NSString *))close
 {
     // Init keyboard view by xib
-    NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"SCNumberKeyBoard" withExtension:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
-    self = [[bundle loadNibNamed:@"SCNumberKeyBoard" owner:self options:nil] firstObject];
+    self = [[[self resourceBundle] loadNibNamed:@"SCNumberKeyBoard" owner:self options:nil] firstObject];
     
     _enterBlock = enter;
     _closeBlock = close;
@@ -66,6 +64,7 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
     _textField.inputView = [self keyBoardView];
     _textField.inputAccessoryView = nil;
     [self initConfig];
+    [self viewConfig];
     
     return self;
 }
@@ -73,6 +72,17 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 #pragma mark - Config Methods
 - (void)initConfig {
     _numbers = @[].mutableCopy;
+}
+
+static NSString *TextFieldClearButtonImageName = @"ClearButton@2x";
+- (void)viewConfig {
+    UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [clearButton setFrame:CGRectMake(0.0f, 0.0f, 19.0f, 19.0f)];
+    NSString *path = [[self resourceBundle] pathForResource:TextFieldClearButtonImageName ofType:@"png"];
+    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    [clearButton setImage:image forState:UIControlStateNormal];
+    [clearButton addTarget:self action:@selector(clearButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [_textField setValue:clearButton forKey:@"_clearButton"];
 }
 
 #pragma mark - Action Methods
@@ -92,6 +102,7 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 
 - (IBAction)backSpaceIconButtonPressed {
     // Delete number
+    [self performShouldChangeCharactersDelegateMethodInRange:(NSRange){_numbers.count - 1, 1} replacementString:[_numbers lastObject]];
     [_numbers removeLastObject];
     [self outputNumbers];
 }
@@ -104,7 +115,24 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
     [self dismiss];
 }
 
+- (void)clearButtonPressed {
+    // Delete all number
+    [self performShouldChangeCharactersDelegateMethodInRange:(NSRange){0, _numbers.count} replacementString:[self outputNumbers]];
+    [_numbers removeAllObjects];
+    [self outputNumbers];
+    if ([_textField.delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
+        [_textField.delegate textFieldShouldClear:_textField];
+    }
+}
+
 #pragma mark - Private Methods
+static NSString *NumberKeyBoardResourceBundleName = @"SCNumberKeyBoard";
+- (NSBundle *)resourceBundle {
+    NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:NumberKeyBoardResourceBundleName withExtension:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
+    return bundle;
+}
+
 - (UIView *)keyBoardView {
     // Layout keyboard for IOS7.
     CGFloat systemVersion = [UIDevice currentDevice].systemVersion.floatValue;
@@ -163,6 +191,7 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 
 - (void)pushNumber:(NSString *)number {
     // Push a number to container.
+    [self performShouldChangeCharactersDelegateMethodInRange:(NSRange){_numbers.count, 0} replacementString:number];
     [_numbers addObject:number];
     [self outputNumbers];
 }
@@ -175,9 +204,18 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
     return numbers;
 }
 
+- (void)performShouldChangeCharactersDelegateMethodInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([_textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+        [_textField.delegate textField:_textField shouldChangeCharactersInRange:range replacementString:string];
+    }
+}
+
 #pragma mark - Public Methods
 - (void)dismiss {
     [_textField resignFirstResponder];
+    if ([_textField.delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
+        [_textField.delegate textFieldShouldReturn:_textField];
+    }
 }
 
 @end

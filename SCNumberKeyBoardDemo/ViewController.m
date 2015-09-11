@@ -20,13 +20,12 @@
         NSLog(@"textField:%@ - number:%@", textField, number);
     }];
     
-    
 //    SCNumberKeyBoard *keyboard = [SCNumberKeyBoard showWithTextField:_firstField enter:^(UITextField *textField, NSString *number) {
 //        NSLog(@"textField:%@ - number:%@", textField, number);
 //    } close:^(UITextField *textField, NSString *number) {
 //        NSLog(@"textField:%@ - number:%@", textField, number);
 //    }];
-//    
+//
 //    [keyboard.enterButton setTitle:<#(NSString *)#> forState:<#(UIControlState)#>];
     
     
@@ -36,6 +35,5 @@
 //        NSLog(@"textField:%@ - number:%@", textField, number);
 //    }];
 }
-
 
 @end
