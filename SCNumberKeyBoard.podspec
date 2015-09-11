@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCNumberKeyBoard"
-  s.version      = "0.5.0"
+  s.version      = "0.5.1"
   s.summary      = "A Money Number KeyBoard Like AliPay Money Number KeyBoard."
 
   s.description  = <<-DESC
@@ -36,7 +36,7 @@ Pod::Spec.new do |s|
 						>`#import "SCNumberKeyBoard.h"`
 
 						## Or
-						Drag `SCNumberKeyBoardDemo/Classes` folder into your project
+						Drag `SCNumberKeyBoardDemo/Classes` and `SCNumberKeyBoardDemo/Resources/` folder into your project
 						>`#import "SCNumberKeyBoard.h"`
 
 						## Previews
@@ -72,7 +72,7 @@ Pod::Spec.new do |s|
 						### Cocoapods:
 						* cocoapods导入：`pod 'SCNumberKeyBoard'`
 						### 手动导入:
-						* 将`SCNumberKeyBoardDemo/Classes`文件夹中的所有文件拽入项目中
+						* 将`SCNumberKeyBoardDemo/Classes`和`SCNumberKeyBoardDemo/Resources/`文件夹中的所有文件拽入项目中
 						* 导入主头文件：`#import "SCNumberKeyBoard.h"`
 
 						## 效果图
