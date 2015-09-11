@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		481E4A7F1BA32B8800468F84 /* ClearButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 481E4A7E1BA32B8800468F84 /* ClearButton@2x.png */; };
 		48520C021B52762200AA66E1 /* SCNumberKeyBoard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48520C041B52762200AA66E1 /* SCNumberKeyBoard.xib */; };
 		486702ED1B0C3899005BA172 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 486702EC1B0C3899005BA172 /* main.m */; };
 		486702F01B0C3899005BA172 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 486702EF1B0C3899005BA172 /* AppDelegate.m */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		481E4A7E1BA32B8800468F84 /* ClearButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ClearButton@2x.png"; sourceTree = "<group>"; };
 		48520C051B52764200AA66E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SCNumberKeyBoard.xib; sourceTree = "<group>"; };
 		486702E71B0C3899005BA172 /* SCNumberKeyBoardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCNumberKeyBoardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		486702EB1B0C3899005BA172 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		48F1E84E1B0CC95C00FFCE75 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				481E4A7E1BA32B8800468F84 /* ClearButton@2x.png */,
 				48F1E84F1B0CC95C00FFCE75 /* BackspaceIcon@2x.png */,
 				48F1E8501B0CC95C00FFCE75 /* KeyBoardIcon@2x.png */,
 				48F1E8511B0CC95C00FFCE75 /* KeyButtonBG@2x.png */,
@@ -319,6 +322,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				481E4A7F1BA32B8800468F84 /* ClearButton@2x.png in Resources */,
 				48F1E8551B0CC95C00FFCE75 /* KeyButtonBG@2x.png in Resources */,
 				48F1E8531B0CC95C00FFCE75 /* BackspaceIcon@2x.png in Resources */,
 				48520C021B52762200AA66E1 /* SCNumberKeyBoard.xib in Resources */,

@@ -56,9 +56,7 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
                             close:(void (^)(UITextField *, NSString *))close
 {
     // Init keyboard view by xib
-    NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"SCNumberKeyBoard" withExtension:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
-    self = [[bundle loadNibNamed:@"SCNumberKeyBoard" owner:self options:nil] firstObject];
+    self = [[[self resourceBundle] loadNibNamed:@"SCNumberKeyBoard" owner:self options:nil] firstObject];
     
     _enterBlock = enter;
     _closeBlock = close;
@@ -66,6 +64,7 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
     _textField.inputView = [self keyBoardView];
     _textField.inputAccessoryView = nil;
     [self initConfig];
+    [self viewConfig];
     
     return self;
 }
@@ -73,6 +72,17 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 #pragma mark - Config Methods
 - (void)initConfig {
     _numbers = @[].mutableCopy;
+}
+
+static NSString *TextFieldClearButtonImageName = @"ClearButton@2x";
+- (void)viewConfig {
+    UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [clearButton setFrame:CGRectMake(0.0f, 0.0f, 19.0f, 19.0f)];
+    NSString *path = [[self resourceBundle] pathForResource:TextFieldClearButtonImageName ofType:@"png"];
+    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    [clearButton setImage:image forState:UIControlStateNormal];
+    [clearButton addTarget:self action:@selector(clearButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [_textField setValue:clearButton forKey:@"_clearButton"];
 }
 
 #pragma mark - Action Methods
@@ -104,7 +114,23 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
     [self dismiss];
 }
 
+- (void)clearButtonPressed {
+    // Delete all number
+    [_numbers removeAllObjects];
+    [self outputNumbers];
+    if ([_textField.delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
+        [_textField.delegate textFieldShouldClear:_textField];
+    }
+}
+
 #pragma mark - Private Methods
+static NSString *NumberKeyBoardResourceBundleName = @"SCNumberKeyBoard";
+- (NSBundle *)resourceBundle {
+    NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:NumberKeyBoardResourceBundleName withExtension:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
+    return bundle;
+}
+
 - (UIView *)keyBoardView {
     // Layout keyboard for IOS7.
     CGFloat systemVersion = [UIDevice currentDevice].systemVersion.floatValue;
