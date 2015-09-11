@@ -178,6 +178,9 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 #pragma mark - Public Methods
 - (void)dismiss {
     [_textField resignFirstResponder];
+    if ([_textField.delegate respondsToSelector:@selector(textFieldShouldReturn:)]) {
+        [_textField.delegate textFieldShouldReturn:_textField];
+    }
 }
 
 @end
