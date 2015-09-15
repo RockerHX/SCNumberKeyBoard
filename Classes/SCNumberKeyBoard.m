@@ -121,10 +121,9 @@ static NSString *TextFieldClearButtonImageName = @"ClearButton@2x";
     // Delete all number
     BOOL canContinue = [self performShouldChangeCharactersDelegateMethodInRange:(NSRange){0, _numbers.count} replacementString:[self outputNumbers]];
     if (canContinue) {
-        [_numbers removeAllObjects];
-        [self outputNumbers];
-        if ([_textField.delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
-            [_textField.delegate textFieldShouldClear:_textField];
+        if ([self performTextFieldShouldClear]) {
+            [_numbers removeAllObjects];
+            [self outputNumbers];
         }
     }
 }
@@ -213,6 +212,13 @@ static NSString *NumberKeyBoardResourceBundleName = @"SCNumberKeyBoard";
 - (BOOL)performShouldChangeCharactersDelegateMethodInRange:(NSRange)range replacementString:(NSString *)string {
     if ([_textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
         return [_textField.delegate textField:_textField shouldChangeCharactersInRange:range replacementString:string];
+    }
+    return YES;
+}
+
+- (BOOL)performTextFieldShouldClear {
+    if ([_textField.delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
+        return [_textField.delegate textFieldShouldClear:_textField];
     }
     return YES;
 }
