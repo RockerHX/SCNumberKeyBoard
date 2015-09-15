@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SCNumberKeyBoard"
-  s.version      = "0.5.1"
+  s.version      = "0.5.2"
   s.summary      = "A Money Number KeyBoard Like AliPay Money Number KeyBoard."
 
   s.description  = <<-DESC
