@@ -102,9 +102,11 @@ static NSString *TextFieldClearButtonImageName = @"ClearButton@2x";
 
 - (IBAction)backSpaceIconButtonPressed {
     // Delete number
-    [self performShouldChangeCharactersDelegateMethodInRange:(NSRange){_numbers.count - 1, 1} replacementString:[_numbers lastObject]];
-    [_numbers removeLastObject];
-    [self outputNumbers];
+    BOOL canContinue = [self performShouldChangeCharactersDelegateMethodInRange:(NSRange){_numbers.count - 1, 1} replacementString:[_numbers lastObject]];
+    if (canContinue) {
+        [_numbers removeLastObject];
+        [self outputNumbers];
+    }
 }
 
 - (IBAction)enterButtonPressed {
@@ -117,11 +119,13 @@ static NSString *TextFieldClearButtonImageName = @"ClearButton@2x";
 
 - (void)clearButtonPressed {
     // Delete all number
-    [self performShouldChangeCharactersDelegateMethodInRange:(NSRange){0, _numbers.count} replacementString:[self outputNumbers]];
-    [_numbers removeAllObjects];
-    [self outputNumbers];
-    if ([_textField.delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
-        [_textField.delegate textFieldShouldClear:_textField];
+    BOOL canContinue = [self performShouldChangeCharactersDelegateMethodInRange:(NSRange){0, _numbers.count} replacementString:[self outputNumbers]];
+    if (canContinue) {
+        [_numbers removeAllObjects];
+        [self outputNumbers];
+        if ([_textField.delegate respondsToSelector:@selector(textFieldShouldClear:)]) {
+            [_textField.delegate textFieldShouldClear:_textField];
+        }
     }
 }
 
@@ -191,9 +195,11 @@ static NSString *NumberKeyBoardResourceBundleName = @"SCNumberKeyBoard";
 
 - (void)pushNumber:(NSString *)number {
     // Push a number to container.
-    [self performShouldChangeCharactersDelegateMethodInRange:(NSRange){_numbers.count, 0} replacementString:number];
-    [_numbers addObject:number];
-    [self outputNumbers];
+    BOOL canContinue =  [self performShouldChangeCharactersDelegateMethodInRange:(NSRange){_numbers.count, 0} replacementString:number];
+    if (canContinue) {
+        [_numbers addObject:number];
+        [self outputNumbers];
+    }
 }
 
 - (NSString *)outputNumbers {
@@ -204,10 +210,11 @@ static NSString *NumberKeyBoardResourceBundleName = @"SCNumberKeyBoard";
     return numbers;
 }
 
-- (void)performShouldChangeCharactersDelegateMethodInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)performShouldChangeCharactersDelegateMethodInRange:(NSRange)range replacementString:(NSString *)string {
     if ([_textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-        [_textField.delegate textField:_textField shouldChangeCharactersInRange:range replacementString:string];
+        return [_textField.delegate textField:_textField shouldChangeCharactersInRange:range replacementString:string];
     }
+    return YES;
 }
 
 #pragma mark - Public Methods
