@@ -196,9 +196,20 @@ static NSString *NumberKeyBoardResourceBundleName = @"SCNumberKeyBoard";
     // Push a number to container.
     BOOL canContinue =  [self performShouldChangeCharactersDelegateMethodInRange:(NSRange){_numbers.count, 0} replacementString:number];
     if (canContinue) {
-        [_numbers addObject:number];
-        [self outputNumbers];
+        NSString *firstNumber = [_numbers firstObject];
+        if ([firstNumber isEqualToString:@"0"]) {
+            if (([number isEqualToString:@"."]) || (_numbers.count >= 2)) {
+                [self addNumber:number];
+            }
+        } else {
+            [self addNumber:number];
+        }
     }
+}
+
+- (void)addNumber:(NSString *)number {
+    [_numbers addObject:number];
+    [self outputNumbers];
 }
 
 - (NSString *)outputNumbers {
