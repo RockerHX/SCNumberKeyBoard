@@ -72,6 +72,14 @@ typedef void(^BLOCK)(UITextField *textField, NSString *number);
 #pragma mark - Config Methods
 - (void)initConfig {
     _numbers = @[].mutableCopy;
+    
+    NSString *text = _textField.text;
+    NSInteger length = _textField.text.length;
+    if (length) {
+        for (NSInteger index = 0; index < length; index ++) {
+            [self handleNumber:[text substringWithRange:(NSRange){index, 1}]];
+        }
+    }
 }
 
 static NSString *TextFieldClearButtonImageName = @"ClearButton@2x";
