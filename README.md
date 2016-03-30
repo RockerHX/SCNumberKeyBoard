@@ -16,7 +16,7 @@ Drag `SCNumberKeyBoardDemo/Classes` and `SCNumberKeyBoardDemo/Resources/` folder
 >`#import "SCNumberKeyBoard.h"`
 
 ## Previews
-![](http://i1.tietuku.com/56d87eac2287ab33.gif)
+![](ScreenShot/SCNumberKeyBoard.png)
 
 ## How To Use
 ```objc
@@ -55,7 +55,7 @@ Use localization that you should change iOS system language.
 * 导入主头文件：`#import "SCNumberKeyBoard.h"`
 
 ## 效果图
-![](http://i1.tietuku.com/56d87eac2287ab33.gif)
+![](ScreenShot/SCNumberKeyBoard.png)
 
 ## 加入代码
 ```objc
